@@ -1,0 +1,266 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>معرض شهادات النمو المهني</title>
+<style>
+:root{--primary:#009688;--primary-dark:#00695c;--bg:#f4f7f8;--card:#fff;--text:#1f2937;--muted:#64748b}
+*{box-sizing:border-box} body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text)}
+header{background:linear-gradient(120deg,#0b8f9f,#22a879);color:#fff;padding:24px 18px;text-align:center;border-bottom-left-radius:28px;border-bottom-right-radius:28px}
+header h1{margin:0;font-size:28px}
+.toolbar{max-width:1160px;margin:18px auto 10px;padding:0 14px;display:grid;grid-template-columns:1.5fr .8fr auto;gap:10px}
+input,select,button{border:1px solid #d7dee5;border-radius:12px;padding:12px 14px;font-size:15px;background:#fff}
+button{cursor:pointer;background:var(--primary);color:#fff;border:0;font-weight:700}
+main.grid{max-width:1160px;margin:0 auto 40px;padding:10px 14px 28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:0 8px 22px rgba(15,23,42,.08);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;border:1px solid #e8edf2}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(15,23,42,.13)} .thumb{height:160px;background:#eef4f5;display:flex;align-items:center;justify-content:center}
+.thumb img{width:100%;height:100%;object-fit:cover} .content{padding:13px 14px 15px}
+.tag{display:inline-block;color:var(--primary-dark);background:#e7f7f4;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700}
+h3{margin:10px 0 8px;font-size:16px;line-height:1.5;min-height:48px} .card p{margin:0;color:var(--muted);font-size:13px}
+.modal{display:none;position:fixed;inset:0;background:rgba(15,23,42,.72);z-index:50;padding:20px} .modal.show{display:flex;align-items:center;justify-content:center}
+.viewer{width:min(1100px,96vw);height:min(760px,92vh);background:#fff;border-radius:18px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.viewerTop{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid #e5e7eb}
+.viewerTop h2{margin:0;font-size:18px} .viewerActions{display:flex;gap:8px;flex-wrap:wrap}
+.viewerActions a,.viewerActions button{text-decoration:none;border-radius:10px;padding:9px 12px;font-size:14px;background:#eef7f6;color:var(--primary-dark);border:1px solid #cdebe7}
+.viewerActions button.close{background:#fee2e2;color:#b91c1c;border-color:#fecaca} #imageView{width:100%;height:100%;object-fit:contain;display:block;background:#111827}
+.empty{display:none;max-width:1160px;margin:20px auto;text-align:center;color:var(--muted)} @media(max-width:720px){.toolbar{grid-template-columns:1fr}header h1{font-size:22px}.viewer{height:88vh}.thumb{height:145px}}
+
+/* إصلاح عرض الشهادات عند تعذر تحميل المعاينة */
+.thumb, .preview, .card .thumb {
+  background: linear-gradient(135deg,#eef8f7,#ffffff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.thumb img, .preview img, .card img {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:transparent;
+}
+.thumb::before, .preview::before {
+  content:"شهادة نمو مهني";
+  color:#0f766e;
+  font-weight:700;
+  font-size:15px;
+  opacity:.9;
+  position:absolute;
+  z-index:0;
+}
+.thumb img, .preview img { position:relative; z-index:1; }
+img.broken-thumb {
+  display:none !important;
+}
+.fallback-title {
+  min-height:160px;
+  background:linear-gradient(135deg,#edf8f7,#ffffff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#0f766e;
+  font-weight:800;
+  padding:18px;
+  line-height:1.8;
+  border-bottom:1px solid #d9efec;
+}
+@media(max-width:760px){
+  .fallback-title{min-height:130px;font-size:14px}
+}
+
+</style></head><body>
+<header><h1>معرض شهادات النمو المهني</h1></header>
+<section class="toolbar"><input id="search" type="search" placeholder="ابحث باسم الشهادة..."><select id="category"><option value="">كل التصنيفات</option><option value="تطوير مهني وتعليمي">تطوير مهني وتعليمي</option>
+<option value="تقنية وذكاء اصطناعي">تقنية وذكاء اصطناعي</option>
+<option value="دورات تدريبية">دورات تدريبية</option>
+<option value="مشاركات وإنجازات">مشاركات وإنجازات</option></select><button onclick="resetFilters()">عرض الكل</button></section>
+<div class="empty" id="empty">لا توجد شهادات مطابقة للبحث.</div><main class="grid" id="grid">
+<article class="card" data-title="Data Analysis and Big Data (English)" data-cat="تقنية وذكاء اصطناعي" onclick="openViewer(1)">
+  <div class="thumb"><img src="thumbnails/01.jpg" alt="Data Analysis and Big Data (English)"></div>
+  <div class="content"><span class="tag">تقنية وذكاء اصطناعي</span><h3>Data Analysis and Big Data (English)</h3><p>JPG</p></div>
+</article>
+
+<article class="card" data-title="شهادة نمو مهني رقم 04" data-cat="دورات تدريبية" onclick="openViewer(2)">
+  <div class="thumb"><img src="thumbnails/02.jpg" alt="شهادة نمو مهني رقم 04"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>شهادة نمو مهني رقم 04</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="Data Analysis and Big Data (English) (2)" data-cat="تقنية وذكاء اصطناعي" onclick="openViewer(3)">
+  <div class="thumb"><img src="thumbnails/03.jpg" alt="Data Analysis and Big Data (English) (2)"></div>
+  <div class="content"><span class="tag">تقنية وذكاء اصطناعي</span><h3>Data Analysis and Big Data (English) (2)</h3><p>JPG</p></div>
+</article>
+
+<article class="card" data-title="الدراسة التأسيسية للشارة الخشبية" data-cat="دورات تدريبية" onclick="openViewer(4)">
+  <div class="thumb"><img src="thumbnails/04.jpg" alt="الدراسة التأسيسية للشارة الخشبية"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>الدراسة التأسيسية للشارة الخشبية</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="دورة تدريب المدربين TOT" data-cat="دورات تدريبية" onclick="openViewer(5)">
+  <div class="thumb"><img src="thumbnails/05.jpg" alt="دورة تدريب المدربين TOT"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>دورة تدريب المدربين TOT</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="دورة ولدت لتفوز" data-cat="دورات تدريبية" onclick="openViewer(6)">
+  <div class="thumb"><img src="thumbnails/06.jpg" alt="دورة ولدت لتفوز"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>دورة ولدت لتفوز</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="دورة بوصلة الحياة" data-cat="دورات تدريبية" onclick="openViewer(7)">
+  <div class="thumb"><img src="thumbnails/07.jpg" alt="دورة بوصلة الحياة"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>دورة بوصلة الحياة</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="دورة بوصلة المعلم الذكي" data-cat="دورات تدريبية" onclick="openViewer(8)">
+  <div class="thumb"><img src="thumbnails/08.jpg" alt="دورة بوصلة المعلم الذكي"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>دورة بوصلة المعلم الذكي</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="دورة تعزيز الذكاء العاطفي" data-cat="تقنية وذكاء اصطناعي" onclick="openViewer(9)">
+  <div class="thumb"><img src="thumbnails/09.jpg" alt="دورة تعزيز الذكاء العاطفي"></div>
+  <div class="content"><span class="tag">تقنية وذكاء اصطناعي</span><h3>دورة تعزيز الذكاء العاطفي</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="شهادة نمو مهني رقم 12" data-cat="دورات تدريبية" onclick="openViewer(10)">
+  <div class="thumb"><img src="thumbnails/10.jpg" alt="شهادة نمو مهني رقم 12"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>شهادة نمو مهني رقم 12</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="لقاء أهم التحديثات لأداة تقدم القراءة" data-cat="دورات تدريبية" onclick="openViewer(11)">
+  <div class="thumb"><img src="thumbnails/11.jpg" alt="لقاء أهم التحديثات لأداة تقدم القراءة"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>لقاء أهم التحديثات لأداة تقدم القراءة</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="لقاء أهم التحديثات لأداة تقدم القراءة (2)" data-cat="دورات تدريبية" onclick="openViewer(12)">
+  <div class="thumb"><img src="thumbnails/12.jpg" alt="لقاء أهم التحديثات لأداة تقدم القراءة (2)"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>لقاء أهم التحديثات لأداة تقدم القراءة (2)</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="شهادة إدارة تدريب الرياض - بنين" data-cat="دورات تدريبية" onclick="openViewer(13)">
+  <div class="thumb"><img src="thumbnails/13.jpg" alt="شهادة إدارة تدريب الرياض - بنين"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>شهادة إدارة تدريب الرياض - بنين</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="لقاء أهم التحديثات لأداة تقدم القراءة (3)" data-cat="دورات تدريبية" onclick="openViewer(14)">
+  <div class="thumb"><img src="thumbnails/14.jpg" alt="لقاء أهم التحديثات لأداة تقدم القراءة (3)"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>لقاء أهم التحديثات لأداة تقدم القراءة (3)</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="التصيد الاحتيالي الإلكتروني" data-cat="تقنية وذكاء اصطناعي" onclick="openViewer(15)">
+  <div class="thumb"><img src="thumbnails/15.jpg" alt="التصيد الاحتيالي الإلكتروني"></div>
+  <div class="content"><span class="tag">تقنية وذكاء اصطناعي</span><h3>التصيد الاحتيالي الإلكتروني</h3><p>JPG</p></div>
+</article>
+
+<article class="card" data-title="شهادات برنامج مقرر الحاسب الآلي للمرحلة الثانوية" data-cat="دورات تدريبية" onclick="openViewer(16)">
+  <div class="thumb"><img src="thumbnails/16.jpg" alt="شهادات برنامج مقرر الحاسب الآلي للمرحلة الثانوية"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>شهادات برنامج مقرر الحاسب الآلي للمرحلة الثانوية</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="برنامج تعليم الكبار" data-cat="تطوير مهني وتعليمي" onclick="openViewer(17)">
+  <div class="thumb"><img src="thumbnails/17.jpg" alt="برنامج تعليم الكبار"></div>
+  <div class="content"><span class="tag">تطوير مهني وتعليمي</span><h3>برنامج تعليم الكبار</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="دور المعلم في الكشف عن الطلبة الموهوبين" data-cat="دورات تدريبية" onclick="openViewer(18)">
+  <div class="thumb"><img src="thumbnails/18.jpg" alt="دور المعلم في الكشف عن الطلبة الموهوبين"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>دور المعلم في الكشف عن الطلبة الموهوبين</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="شهادة المعلم المبدع" data-cat="مشاركات وإنجازات" onclick="openViewer(19)">
+  <div class="thumb"><img src="thumbnails/19.jpg" alt="شهادة المعلم المبدع"></div>
+  <div class="content"><span class="tag">مشاركات وإنجازات</span><h3>شهادة المعلم المبدع</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="تحكيم مسابقة وطني للبرمجة" data-cat="مشاركات وإنجازات" onclick="openViewer(20)">
+  <div class="thumb"><img src="thumbnails/20.jpg" alt="تحكيم مسابقة وطني للبرمجة"></div>
+  <div class="content"><span class="tag">مشاركات وإنجازات</span><h3>تحكيم مسابقة وطني للبرمجة</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="شهادة يحيى معيض يحيى الشهري" data-cat="دورات تدريبية" onclick="openViewer(21)">
+  <div class="thumb"><img src="thumbnails/21.jpg" alt="شهادة يحيى معيض يحيى الشهري"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>شهادة يحيى معيض يحيى الشهري</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="شهادة يحيى بن معيض الشهري" data-cat="دورات تدريبية" onclick="openViewer(22)">
+  <div class="thumb"><img src="thumbnails/22.jpg" alt="شهادة يحيى بن معيض الشهري"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>شهادة يحيى بن معيض الشهري</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="لقاء أهم التحديثات لأداة تقدم القراءة (4)" data-cat="دورات تدريبية" onclick="openViewer(23)">
+  <div class="thumb"><img src="thumbnails/23.jpg" alt="لقاء أهم التحديثات لأداة تقدم القراءة (4)"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>لقاء أهم التحديثات لأداة تقدم القراءة (4)</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="شهادة يحيى معيض يحيى الشهري (2)" data-cat="دورات تدريبية" onclick="openViewer(24)">
+  <div class="thumb"><img src="thumbnails/24.jpg" alt="شهادة يحيى معيض يحيى الشهري (2)"></div>
+  <div class="content"><span class="tag">دورات تدريبية</span><h3>شهادة يحيى معيض يحيى الشهري (2)</h3><p>PNG</p></div>
+</article>
+
+<article class="card" data-title="برنامج الإدارة التنظيمية" data-cat="تطوير مهني وتعليمي" onclick="openViewer(25)">
+  <div class="thumb"><img src="thumbnails/25.jpg" alt="برنامج الإدارة التنظيمية"></div>
+  <div class="content"><span class="tag">تطوير مهني وتعليمي</span><h3>برنامج الإدارة التنظيمية</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="الأمن السيبراني" data-cat="تقنية وذكاء اصطناعي" onclick="openViewer(26)">
+  <div class="thumb"><img src="thumbnails/26.jpg" alt="الأمن السيبراني"></div>
+  <div class="content"><span class="tag">تقنية وذكاء اصطناعي</span><h3>الأمن السيبراني</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="إدارة المخاطر" data-cat="تقنية وذكاء اصطناعي" onclick="openViewer(27)">
+  <div class="thumb"><img src="thumbnails/27.jpg" alt="إدارة المخاطر"></div>
+  <div class="content"><span class="tag">تقنية وذكاء اصطناعي</span><h3>إدارة المخاطر</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="سياسات حوكمة البيانات" data-cat="تقنية وذكاء اصطناعي" onclick="openViewer(28)">
+  <div class="thumb"><img src="thumbnails/28.jpg" alt="سياسات حوكمة البيانات"></div>
+  <div class="content"><span class="tag">تقنية وذكاء اصطناعي</span><h3>سياسات حوكمة البيانات</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="إدارة الأداء الوظيفي في وزارة التعليم" data-cat="تطوير مهني وتعليمي" onclick="openViewer(29)">
+  <div class="thumb"><img src="thumbnails/29.jpg" alt="إدارة الأداء الوظيفي في وزارة التعليم"></div>
+  <div class="content"><span class="tag">تطوير مهني وتعليمي</span><h3>إدارة الأداء الوظيفي في وزارة التعليم</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="مبادئ الذكاء الاصطناعي" data-cat="تقنية وذكاء اصطناعي" onclick="openViewer(30)">
+  <div class="thumb"><img src="thumbnails/30.jpg" alt="مبادئ الذكاء الاصطناعي"></div>
+  <div class="content"><span class="tag">تقنية وذكاء اصطناعي</span><h3>مبادئ الذكاء الاصطناعي</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="مفاهيم الذكاء الاصطناعي وتطبيقاته المتقدمة" data-cat="تقنية وذكاء اصطناعي" onclick="openViewer(31)">
+  <div class="thumb"><img src="thumbnails/31.jpg" alt="مفاهيم الذكاء الاصطناعي وتطبيقاته المتقدمة"></div>
+  <div class="content"><span class="tag">تقنية وذكاء اصطناعي</span><h3>مفاهيم الذكاء الاصطناعي وتطبيقاته المتقدمة</h3><p>PDF</p></div>
+</article>
+
+<article class="card" data-title="شهادة مشاركة في هاكاثون تقنيات التعليم والتقويم" data-cat="مشاركات وإنجازات" onclick="openViewer(32)">
+  <div class="thumb"><img src="thumbnails/32.jpg" alt="شهادة مشاركة في هاكاثون تقنيات التعليم والتقويم"></div>
+  <div class="content"><span class="tag">مشاركات وإنجازات</span><h3>شهادة مشاركة في هاكاثون تقنيات التعليم والتقويم</h3><p>PDF</p></div>
+</article>
+</main>
+<div class="modal" id="modal" onclick="if(event.target.id==='modal') closeViewer()"><div class="viewer"><div class="viewerTop"><h2 id="viewerTitle">الشهادة</h2><div class="viewerActions"><a id="openNew" target="_blank">فتح الملف الأصلي</a><a id="download" download>تحميل</a><button class="close" onclick="closeViewer()">إغلاق</button></div></div><img id="imageView" alt="الشهادة"></div></div>
+<script>
+const items = [{"id": 1, "title": "Data Analysis and Big Data (English)", "category": "تقنية وذكاء اصطناعي", "type": "JPG", "file": "certificates/01 - Data Analysis and Big Data (English).jpg", "thumb": "thumbnails/01.jpg", "preview": "previews/01.jpg", "original": "cf3f33e5-e33d-4287-acf0-0b62260be410.jpg"}, {"id": 2, "title": "شهادة نمو مهني رقم 04", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/02 - شهادة نمو مهني رقم 04.pdf", "thumb": "thumbnails/02.jpg", "preview": "previews/02.jpg", "original": "النمو المهني كامل/النمو المهني 1446/CamScanner 09-10-2023 20.01.pdf"}, {"id": 3, "title": "Data Analysis and Big Data (English) (2)", "category": "تقنية وذكاء اصطناعي", "type": "JPG", "file": "certificates/03 - Data Analysis and Big Data (English) (2).jpg", "thumb": "thumbnails/03.jpg", "preview": "previews/03.jpg", "original": "النمو المهني كامل/النمو المهني 1446/Data Analyss and Big Data ( English)_Page_194.jpg"}, {"id": 4, "title": "الدراسة التأسيسية للشارة الخشبية", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/04 - الدراسة التأسيسية للشارة الخشبية.pdf", "thumb": "thumbnails/04.jpg", "preview": "previews/04.jpg", "original": "النمو المهني كامل/النمو المهني 1446/PDFMailer.pdf"}, {"id": 5, "title": "دورة تدريب المدربين TOT", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/05 - دورة تدريب المدربين TOT.pdf", "thumb": "thumbnails/05.jpg", "preview": "previews/05.jpg", "original": "النمو المهني كامل/النمو المهني 1446/certificate 2.pdf"}, {"id": 6, "title": "دورة ولدت لتفوز", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/06 - دورة ولدت لتفوز.pdf", "thumb": "thumbnails/06.jpg", "preview": "previews/06.jpg", "original": "النمو المهني كامل/النمو المهني 1446/certificate 3.pdf"}, {"id": 7, "title": "دورة بوصلة الحياة", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/07 - دورة بوصلة الحياة.pdf", "thumb": "thumbnails/07.jpg", "preview": "previews/07.jpg", "original": "النمو المهني كامل/النمو المهني 1446/certificate 4.pdf"}, {"id": 8, "title": "دورة بوصلة المعلم الذكي", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/08 - دورة بوصلة المعلم الذكي.pdf", "thumb": "thumbnails/08.jpg", "preview": "previews/08.jpg", "original": "النمو المهني كامل/النمو المهني 1446/certificate 5.pdf"}, {"id": 9, "title": "دورة تعزيز الذكاء العاطفي", "category": "تقنية وذكاء اصطناعي", "type": "PDF", "file": "certificates/09 - دورة تعزيز الذكاء العاطفي.pdf", "thumb": "thumbnails/09.jpg", "preview": "previews/09.jpg", "original": "النمو المهني كامل/النمو المهني 1446/certificate.pdf"}, {"id": 10, "title": "شهادة نمو مهني رقم 12", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/10 - شهادة نمو مهني رقم 12.pdf", "thumb": "thumbnails/10.jpg", "preview": "previews/10.jpg", "original": "النمو المهني كامل/النمو المهني 1446/cr_1_f44hwg5235vda5.pdf"}, {"id": 11, "title": "لقاء أهم التحديثات لأداة تقدم القراءة", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/11 - لقاء أهم التحديثات لأداة تقدم القراءة.pdf", "thumb": "thumbnails/11.jpg", "preview": "previews/11.jpg", "original": "النمو المهني كامل/النمو المهني 1446/rp_GetTraineeByCourseID_print.aspx.pdf"}, {"id": 12, "title": "لقاء أهم التحديثات لأداة تقدم القراءة (2)", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/12 - لقاء أهم التحديثات لأداة تقدم القراءة (2).pdf", "thumb": "thumbnails/12.jpg", "preview": "previews/12.jpg", "original": "النمو المهني كامل/النمو المهني 1446/rpt_Nmw_Mehani_By_TraineeID.aspx.pdf"}, {"id": 13, "title": "شهادة إدارة تدريب الرياض - بنين", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/13 - شهادة إدارة تدريب الرياض - بنين.pdf", "thumb": "thumbnails/13.jpg", "preview": "previews/13.jpg", "original": "النمو المهني كامل/النمو المهني 1446/إدارة تدريب الرياض - بنين - (1).pdf"}, {"id": 14, "title": "لقاء أهم التحديثات لأداة تقدم القراءة (3)", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/14 - لقاء أهم التحديثات لأداة تقدم القراءة (3).pdf", "thumb": "thumbnails/14.jpg", "preview": "previews/14.jpg", "original": "النمو المهني كامل/النمو المهني 1446/إدارة تدريب الرياض - بنين -.pdf"}, {"id": 15, "title": "التصيد الاحتيالي الإلكتروني", "category": "تقنية وذكاء اصطناعي", "type": "JPG", "file": "certificates/15 - التصيد الاحتيالي الإلكتروني.jpg", "thumb": "thumbnails/15.jpg", "preview": "previews/15.jpg", "original": "النمو المهني كامل/النمو المهني 1446/التصيد الاحتيالي الالكتروني_Page_252.jpg"}, {"id": 16, "title": "شهادات برنامج مقرر الحاسب الآلي للمرحلة الثانوية", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/16 - شهادات برنامج مقرر الحاسب الآلي للمرحلة الثانوية.pdf", "thumb": "thumbnails/16.jpg", "preview": "previews/16.jpg", "original": "النمو المهني كامل/النمو المهني 1446/الشهادات2.pdf"}, {"id": 17, "title": "برنامج تعليم الكبار", "category": "تطوير مهني وتعليمي", "type": "PDF", "file": "certificates/17 - برنامج تعليم الكبار.pdf", "thumb": "thumbnails/17.jpg", "preview": "previews/17.jpg", "original": "النمو المهني كامل/النمو المهني 1446/تعليم الكبار.pdf"}, {"id": 18, "title": "دور المعلم في الكشف عن الطلبة الموهوبين", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/18 - دور المعلم في الكشف عن الطلبة الموهوبين.pdf", "thumb": "thumbnails/18.jpg", "preview": "previews/18.jpg", "original": "النمو المهني كامل/النمو المهني 1446/دورة استكشاف الطلبة الموهوبين.pdf"}, {"id": 19, "title": "شهادة المعلم المبدع", "category": "مشاركات وإنجازات", "type": "PDF", "file": "certificates/19 - شهادة المعلم المبدع.pdf", "thumb": "thumbnails/19.jpg", "preview": "previews/19.jpg", "original": "النمو المهني كامل/النمو المهني 1446/شهادة المعلم المبدع.pdf"}, {"id": 20, "title": "تحكيم مسابقة وطني للبرمجة", "category": "مشاركات وإنجازات", "type": "PDF", "file": "certificates/20 - تحكيم مسابقة وطني للبرمجة.pdf", "thumb": "thumbnails/20.jpg", "preview": "previews/20.jpg", "original": "النمو المهني كامل/النمو المهني 1446/شهادة تحكيم مسابقة وطني للبرمجة .pdf"}, {"id": 21, "title": "شهادة يحيى معيض يحيى الشهري", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/21 - شهادة يحيى معيض يحيى الشهري.pdf", "thumb": "thumbnails/21.jpg", "preview": "previews/21.jpg", "original": "النمو المهني كامل/النمو المهني 1446/شهادة يحيى معيض يحيى الشهري  (1).pdf"}, {"id": 22, "title": "شهادة يحيى بن معيض الشهري", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/22 - شهادة يحيى بن معيض الشهري.pdf", "thumb": "thumbnails/22.jpg", "preview": "previews/22.jpg", "original": "النمو المهني كامل/النمو المهني 1446/يحيى بن معيض الشهري.pdf"}, {"id": 23, "title": "لقاء أهم التحديثات لأداة تقدم القراءة (4)", "category": "دورات تدريبية", "type": "PDF", "file": "certificates/23 - لقاء أهم التحديثات لأداة تقدم القراءة (4).pdf", "thumb": "thumbnails/23.jpg", "preview": "previews/23.jpg", "original": "النمو المهني كامل/النمو المهني 1446/‎⁨1011105879شهادة متدرب⁩.pdf"}, {"id": 24, "title": "شهادة يحيى معيض يحيى الشهري (2)", "category": "دورات تدريبية", "type": "PNG", "file": "certificates/24 - شهادة يحيى معيض يحيى الشهري (2).png", "thumb": "thumbnails/24.jpg", "preview": "previews/24.jpg", "original": "النمو المهني كامل/النمو المهني 1446/‎⁨211_يحيى معيض يحيى الشهري 2⁩ (1).png"}, {"id": 25, "title": "برنامج الإدارة التنظيمية", "category": "تطوير مهني وتعليمي", "type": "PDF", "file": "certificates/25 - برنامج الإدارة التنظيمية.pdf", "thumb": "thumbnails/25.jpg", "preview": "previews/25.jpg", "original": "النمو المهني كامل/النمو المهني 1446/‎⁨إدارة تدريب الرياض - بنين -⁩.pdf"}, {"id": 26, "title": "الأمن السيبراني", "category": "تقنية وذكاء اصطناعي", "type": "PDF", "file": "certificates/26 - الأمن السيبراني.pdf", "thumb": "thumbnails/26.jpg", "preview": "previews/26.jpg", "original": "النمو المهني كامل/النمو المهني 1447هـ/شهادة moe MOE-010   منصة أبعاد.pdf"}, {"id": 27, "title": "إدارة المخاطر", "category": "تقنية وذكاء اصطناعي", "type": "PDF", "file": "certificates/27 - إدارة المخاطر.pdf", "thumb": "thumbnails/27.jpg", "preview": "previews/27.jpg", "original": "النمو المهني كامل/النمو المهني 1447هـ/شهادة moe MOE-09   منصة أبعاد.pdf المخاطر.pdf"}, {"id": 28, "title": "سياسات حوكمة البيانات", "category": "تقنية وذكاء اصطناعي", "type": "PDF", "file": "certificates/28 - سياسات حوكمة البيانات.pdf", "thumb": "thumbnails/28.jpg", "preview": "previews/28.jpg", "original": "النمو المهني كامل/النمو المهني 1447هـ/شهادة moe moe_1   منصة أبعاد.pdf سياسات الحوكمة.pdf"}, {"id": 29, "title": "إدارة الأداء الوظيفي في وزارة التعليم", "category": "تطوير مهني وتعليمي", "type": "PDF", "file": "certificates/29 - إدارة الأداء الوظيفي في وزارة التعليم.pdf", "thumb": "thumbnails/29.jpg", "preview": "previews/29.jpg", "original": "النمو المهني كامل/النمو المهني 1447هـ/شهادة moe moe_الاداء الوظيفي    منصة أبعاد.pdf"}, {"id": 30, "title": "مبادئ الذكاء الاصطناعي", "category": "تقنية وذكاء اصطناعي", "type": "PDF", "file": "certificates/30 - مبادئ الذكاء الاصطناعي.pdf", "thumb": "thumbnails/30.jpg", "preview": "previews/30.jpg", "original": "النمو المهني كامل/النمو المهني 1447هـ/مبادىء الذكاء الاصطناعي.pdf"}, {"id": 31, "title": "مفاهيم الذكاء الاصطناعي وتطبيقاته المتقدمة", "category": "تقنية وذكاء اصطناعي", "type": "PDF", "file": "certificates/31 - مفاهيم الذكاء الاصطناعي وتطبيقاته المتقدمة.pdf", "thumb": "thumbnails/31.jpg", "preview": "previews/31.jpg", "original": "النمو المهني كامل/النمو المهني 1447هـ/‎⁨شهادة مفاهيم الذكاء الاصطناعي وتطبيقاته المتقدمة⁩.pdf"}, {"id": 32, "title": "شهادة مشاركة في هاكاثون تقنيات التعليم والتقويم", "category": "مشاركات وإنجازات", "type": "PDF", "file": "certificates/32 - شهادة مشاركة في هاكاثون تقنيات التعليم والتقويم.pdf", "thumb": "thumbnails/32.jpg", "preview": "previews/32.jpg", "original": "CamScanner 2026-5-4 05.44.pdf"}];
+const search=document.getElementById('search'),category=document.getElementById('category'),cards=Array.from(document.querySelectorAll('.card')),empty=document.getElementById('empty');
+function filterCards(){const q=search.value.trim().toLowerCase(),cat=category.value;let visible=0;cards.forEach(card=>{const ok=(!q||card.dataset.title.toLowerCase().includes(q))&&(!cat||card.dataset.cat===cat);card.style.display=ok?'':'none';if(ok)visible++;});empty.style.display=visible?'none':'block';}
+search.addEventListener('input',filterCards);category.addEventListener('change',filterCards);function resetFilters(){search.value='';category.value='';filterCards();}
+function openViewer(id){const item=items.find(x=>x.id===id);if(!item)return;document.getElementById('viewerTitle').textContent=item.title;document.getElementById('openNew').href=item.file;document.getElementById('download').href=item.file;document.getElementById('imageView').src=item.preview||item.thumb;document.getElementById('modal').classList.add('show');}
+function closeViewer(){document.getElementById('modal').classList.remove('show');document.getElementById('imageView').src='';} document.addEventListener('keydown',e=>{if(e.key==='Escape')closeViewer();});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  document.querySelectorAll("img").forEach(function(img){
+    img.addEventListener("error", function(){
+      const card = img.closest(".card") || img.closest("article") || img.parentElement;
+      const titleEl = card ? (card.querySelector("h3") || card.querySelector(".title")) : null;
+      const title = titleEl ? titleEl.textContent.trim() : "شهادة نمو مهني";
+      const parent = img.parentElement;
+      img.classList.add("broken-thumb");
+      if (parent && !parent.querySelector(".fallback-title")) {
+        const box = document.createElement("div");
+        box.className = "fallback-title";
+        box.textContent = title;
+        parent.appendChild(box);
+      }
+    });
+  });
+});
+</script>
+
+</body></html>
