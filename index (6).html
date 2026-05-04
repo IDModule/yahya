@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ملف إنجاز أ. يحيى الشهري</title>
+<style>
+:root {
+  --primary:#0f766e;
+  --primary2:#0ea5a4;
+  --dark:#0f2f3f;
+  --gold:#d4a73c;
+  --bg:#f3faf9;
+  --card:#ffffff;
+  --muted:#64748b;
+  --line:#d9efec;
+  --shadow:0 16px 40px rgba(15,47,63,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 85% 5%, rgba(14,165,164,.16), transparent 28%),
+    radial-gradient(circle at 10% 20%, rgba(212,167,60,.16), transparent 24%),
+    var(--bg);
+  color:var(--dark);
+}
+a{color:inherit}
+.hero{
+  position:relative;
+  overflow:hidden;
+  min-height:270px;
+  background:linear-gradient(135deg,#0f766e 0%,#0ea5a4 55%,#123f53 100%);
+  color:#fff;
+  padding:26px 20px 54px;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:auto -80px -120px auto;
+  width:330px;height:330px;
+  border-radius:50%;
+  background:rgba(255,255,255,.11);
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:40px auto auto -80px;
+  width:210px;height:210px;
+  border-radius:50%;
+  background:rgba(212,167,60,.18);
+}
+.topbar{
+  max-width:1150px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  position:relative;
+  z-index:2;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.brand img{
+  width:86px;
+  max-height:76px;
+  object-fit:contain;
+  background:#fff;
+  padding:8px 10px;
+  border-radius:16px;
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+}
+.brand .small{opacity:.85;font-size:14px;margin-top:4px}
+.navlinks{display:flex;gap:10px;flex-wrap:wrap}
+.navlinks a{
+  text-decoration:none;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.22);
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:14px;
+}
+.hero-content{
+  max-width:1150px;
+  margin:36px auto 0;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:22px;
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+.hero h1{font-size:42px;margin:0 0 10px;line-height:1.25}
+.hero p{font-size:17px;line-height:1.9;margin:0;opacity:.94}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  text-decoration:none;
+  border:0;
+  cursor:pointer;
+  border-radius:14px;
+  padding:12px 18px;
+  font-weight:800;
+  font-size:15px;
+  transition:.18s ease;
+}
+.btn.primary{background:#fff;color:var(--primary)}
+.btn.gold{background:var(--gold);color:#fff}
+.btn.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.03)}
+.profile-card{
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:26px;
+  padding:22px;
+  backdrop-filter:blur(8px);
+}
+.profile-card h2{margin:0 0 12px;font-size:22px}
+.profile-list{display:grid;gap:10px}
+.profile-list div{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 12px;
+  background:rgba(255,255,255,.12);
+  border-radius:14px;
+}
+.profile-list b{color:#fff}
+.profile-list span{opacity:.95}
+.main{
+  max-width:1150px;
+  margin:-32px auto 50px;
+  padding:0 16px;
+  position:relative;
+  z-index:3;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-bottom:18px;
+}
+.stat{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:18px;
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+.stat strong{display:block;font-size:26px;color:var(--primary);margin-bottom:4px}
+.stat span{color:var(--muted);font-weight:700}
+.panel{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:26px;
+  box-shadow:var(--shadow);
+  padding:20px;
+  margin-top:18px;
+}
+.panel-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+.panel h2{margin:0;font-size:24px;color:var(--dark)}
+.tools{display:flex;gap:10px;flex-wrap:wrap}
+.search{
+  width:min(360px,100%);
+  border:1px solid #cde8e4;
+  background:#f8fffe;
+  border-radius:14px;
+  padding:12px 14px;
+  font-size:15px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:16px;
+}
+.card{
+  background:linear-gradient(180deg,#ffffff,#fbfffe);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 10px 28px rgba(15,47,63,.06);
+  transition:.18s ease;
+  position:relative;
+  overflow:hidden;
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(15,47,63,.12)}
+.card::after{
+  content:"";
+  position:absolute;
+  top:-36px;left:-36px;
+  width:90px;height:90px;
+  background:rgba(14,165,164,.08);
+  border-radius:50%;
+}
+.card-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.icon{
+  width:50px;height:50px;
+  display:grid;
+  place-items:center;
+  background:#e9f8f6;
+  color:var(--primary);
+  border-radius:16px;
+  font-size:25px;
+}
+.card h3{margin:0;color:var(--primary);font-size:20px;line-height:1.5}
+.card p{margin:10px 0 14px;color:var(--muted);line-height:1.7;font-size:14px}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:#fff7e5;
+  color:#8a6413;
+  border:1px solid #f1d58b;
+  border-radius:999px;
+  padding:6px 10px;
+  font-size:12px;
+  font-weight:800;
+}
+.card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+button,.linkbtn{
+  border:0;
+  border-radius:12px;
+  padding:10px 14px;
+  cursor:pointer;
+  background:var(--primary);
+  color:#fff;
+  font-size:14px;
+  font-weight:800;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+}
+button.secondary{background:#e7f7f4;color:var(--primary)}
+.linkbtn.alt{background:var(--gold);color:#fff}
+.reportlist{
+  display:none;
+  margin-top:14px;
+  border-top:1px dashed #c7e6e0;
+  padding-top:12px;
+}
+.reportlist.open{display:block}
+.reportlist a{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin:8px 0;
+  padding:11px 12px;
+  background:#edf8f7;
+  border:1px solid #d7eeeb;
+  border-radius:13px;
+  color:#123f53;
+  text-decoration:none;
+  line-height:1.5;
+  font-weight:700;
+}
+.reportlist a:hover{background:#dff3f0}
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.footer{
+  text-align:center;
+  color:#607080;
+  padding:26px 12px 42px;
+}
+.hidden{display:none!important}
+@media(max-width:800px){
+  .hero-content{grid-template-columns:1fr}
+  .hero h1{font-size:30px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .topbar{align-items:flex-start;flex-direction:column}
+  .navlinks{width:100%}
+  .navlinks a{flex:1;text-align:center}
+}
+@media(max-width:520px){
+  .stats{grid-template-columns:1fr}
+  .brand img{width:72px}
+  .hero{padding-top:20px}
+}
+.official-subtitle{font-size:18px;font-weight:700;margin:6px 0 12px;color:#fff;opacity:.96}.hero-content>div{max-width:880px;margin:auto;text-align:center}.hero-actions{justify-content:center}</style>
+</head>
+<body>
+<header class="hero">
+  <div class="topbar">
+    <div class="brand">
+      <img src="moe_logo.png" alt="شعار وزارة التعليم">
+      <div>
+        <strong>متوسطة المهدية الأولى</strong>
+        <div class="small">ملف إنجاز</div>
+      </div>
+    </div>
+    <nav class="navlinks">
+      <a href="#indicators">المؤشرات</a>
+      <a href="about.html" target="_blank">البيانات المهنية</a>
+      <a href="growth_gallery/index.html" target="_blank">النمو المهني</a>
+    </nav>
+  </div>
+
+  <div class="hero-content">
+    <div>
+      <h1>ملف إنجاز أ. يحيى الشهري</h1>
+      <div class="official-subtitle">معلم المهارات الرقمية – متوسطة المهدية الأولى</div>
+      <p>ملف رسمي يوثق مؤشرات الأداء الوظيفي، والتقارير، والشواهد، وشهادات النمو المهني بصورة منظمة وواضحة.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#indicators">استعراض مؤشرات الأداء</a>
+        <a class="btn gold" href="about.html" target="_blank">البيانات المهنية</a>
+        <a class="btn ghost" href="growth_gallery/index.html" target="_blank">شهادات النمو المهني</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+  <section class="stats">
+    <div class="stat"><strong>10</strong><span>مؤشرات أداء</span></div>
+    <div class="stat"><strong>35</strong><span>تقرير وشاهد</span></div>
+    <div class="stat"><strong>32</strong><span>شهادة نمو مهني</span></div>
+    <div class="stat"><strong>رسمي</strong><span>توثيق منظم</span></div>
+  </section>
+
+  <section class="panel" id="indicators">
+    <div class="panel-head">
+      <div class="section-title">
+        <span class="icon">🗂️</span>
+        <h2>مؤشرات الأداء الوظيفي</h2>
+      </div>
+      <div class="tools">
+        <input class="search" id="search" type="search" placeholder="ابحث عن مؤشر أو تقرير...">
+        <button class="secondary" onclick="collapseAll()">إغلاق الكل</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  ملف إنجاز رسمي | متوسطة المهدية الأولى
+</footer>
+
+<script>
+const sections = [{"display": "أداء الواجبات الوظيفية", "reports": [{"title": "تنظيم المتابعة الرقمية للمهام", "href": "indicators/المؤشرات_للاداء_الوظيفي/1- أداء الواجبات الوظيفية/01_01_تقرير تنظيم المتابعة الرقمية للمهام.pdf"}, {"title": "المشاركة الرقمية والتفاعل التعليمي", "href": "indicators/المؤشرات_للاداء_الوظيفي/1- أداء الواجبات الوظيفية/02_digital_participation.pdf"}, {"title": "توثيق السجلات والمهام التعليمية", "href": "indicators/المؤشرات_للاداء_الوظيفي/1- أداء الواجبات الوظيفية/تقرير_توثيق_السجلات_والمهام_التعليمية_محدث.pdf"}]}, {"display": "التفاعل مع المجتمع المدرسي", "reports": [{"title": "تفعيل قناة المجتمع المدرسي", "href": "indicators/المؤشرات_للاداء_الوظيفي/2- التفاعل مع المجتمع المدرسي/01_madrasati_channel.pdf"}, {"title": "تفعيل برنامج أو نشاط مدرسي", "href": "indicators/المؤشرات_للاداء_الوظيفي/2- التفاعل مع المجتمع المدرسي/02_03_تقرير تفعيل برنامج أو نشاط مدرسي.pdf"}, {"title": "رواد الفصول وجدول الإذاعة", "href": "indicators/المؤشرات_للاداء_الوظيفي/2- التفاعل مع المجتمع المدرسي/05_class_leaders_radio.pdf"}, {"title": "توثيق إعلان أو نشاط مجتمعي", "href": "indicators/المؤشرات_للاداء_الوظيفي/2- التفاعل مع المجتمع المدرسي/CamScanner 2026-2-9 09.53.pdf"}, {"title": "نشر الإعلانات التعليمية عبر فصول Teams", "href": "indicators/المؤشرات_للاداء_الوظيفي/2- التفاعل مع المجتمع المدرسي/teams_announcements_report_same_images.pdf"}, {"title": "تفعيل قناة التليجرام للتواصل التعليمي", "href": "indicators/المؤشرات_للاداء_الوظيفي/2- التفاعل مع المجتمع المدرسي/تقرير_تفعيل_قناة_التليجرام_للتواصل_التعليمي.pdf"}]}, {"display": "التفاعل مع أولياء الأمور", "reports": [{"title": "إرسال التقارير لأولياء الأمور", "href": "indicators/المؤشرات_للاداء_الوظيفي/3- التفاعل مع أولياء الأمور/03_01_تقرير إرسال التقارير لأولياء الأمور.pdf"}, {"title": "التواصل الإرشادي مع الطلاب وأولياء الأمور", "href": "indicators/المؤشرات_للاداء_الوظيفي/3- التفاعل مع أولياء الأمور/03_02_تقرير التواصل الإرشادي مع الطلاب وأولياء الأمور.pdf"}, {"title": "التواصل مع أولياء الأمور عبر التليجرام", "href": "indicators/المؤشرات_للاداء_الوظيفي/3- التفاعل مع أولياء الأمور/parent_telegram_communication_report.pdf"}]}, {"display": "استراتيجيات التدريس", "reports": [{"title": "توظيف أوراق العمل في التعلم", "href": "indicators/المؤشرات_للاداء_الوظيفي/4- استراتيجيات التدريس/01_worksheets_learning_report.pdf"}, {"title": "استخدام الأنشطة ال أثناء الدرس", "href": "indicators/المؤشرات_للاداء_الوظيفي/4- استراتيجيات التدريس/02_interactive_activities_report.pdf"}, {"title": "دعم التعلم بالألعاب التعليمية", "href": "indicators/المؤشرات_للاداء_الوظيفي/4- استراتيجيات التدريس/03_educational_games_report.pdf"}, {"title": "استراتيجيات التدريس – ملف مجمع", "href": "indicators/المؤشرات_للاداء_الوظيفي/4- استراتيجيات التدريس/teaching_strategies_moe_logo.pdf"}]}, {"display": "تحسين نتائج المتعلمين", "reports": [{"title": "إعداد الخطة العلاجية للفصل الثاني 1447هـ", "href": "indicators/المؤشرات_للاداء_الوظيفي/5- تحسين نتائج المتعلمين/01_remedial_plan_second_term_1447.pdf"}, {"title": "متابعة نواتج التعلم", "href": "indicators/المؤشرات_للاداء_الوظيفي/5- تحسين نتائج المتعلمين/02_learning_outcomes_followup.pdf"}, {"title": "توظيف التقارير الرقمية في تحسين الأداء", "href": "indicators/المؤشرات_للاداء_الوظيفي/5- تحسين نتائج المتعلمين/03_digital_reports_improvement.pdf"}, {"title": "خريطة نواتج التعلم", "href": "indicators/المؤشرات_للاداء_الوظيفي/5- تحسين نتائج المتعلمين/04_learning_outcomes.pdf"}]}, {"display": "التخطيط والتنفيذ", "reports": [{"title": "إعداد الخطة الأسبوعية", "href": "indicators/المؤشرات_للاداء_الوظيفي/6- التخطيط والتنفيذ/01_weekly_plan_report.pdf"}, {"title": "نشر ملفات التعلم للطلاب", "href": "indicators/المؤشرات_للاداء_الوظيفي/6- التخطيط والتنفيذ/02_learning_files_report.pdf"}, {"title": "تنفيذ مشاريع الطلاب والأنشطة التعليمية", "href": "indicators/المؤشرات_للاداء_الوظيفي/6- التخطيط والتنفيذ/03_student_projects_report.pdf"}, {"title": "توثيق الخطة الأسبوعية", "href": "indicators/المؤشرات_للاداء_الوظيفي/6- التخطيط والتنفيذ/03_weekly_plan.pdf"}]}, {"display": "توظيف التقنية", "reports": [{"title": "استخدام Microsoft Forms في التعلم", "href": "indicators/المؤشرات_للاداء_الوظيفي/7- توظيف التقنية/01_microsoft_forms_report.pdf"}, {"title": "استخدام Teams والقنوات التعليمية", "href": "indicators/المؤشرات_للاداء_الوظيفي/7- توظيف التقنية/02_teams_channels_report.pdf"}, {"title": "استخدام المنصات ال", "href": "indicators/المؤشرات_للاداء_الوظيفي/7- توظيف التقنية/03_interactive_platforms_report.pdf"}, {"title": "توظيف البروجكتور وKahoot وQuizizz في التعلم باللعب", "href": "indicators/المؤشرات_للاداء_الوظيفي/7- توظيف التقنية/projector_kahoot_quizizz_report (1).pdf"}]}, {"display": "البيئة التعليمية", "reports": [{"title": "تهيئة البيئة التعليمية بالأدوات الرقمية", "href": "indicators/المؤشرات_للاداء_الوظيفي/8- البيئة التعليمية/learning_environment_moe_logo.pdf"}, {"title": "تهيئة البيئة التعليمية باستخدام البروجكتور وKahoot وQuizizz", "href": "indicators/المؤشرات_للاداء_الوظيفي/8- البيئة التعليمية/projector_kahoot_quizizz_report.pdf"}]}, {"display": "إدارة الصف", "reports": [{"title": "الإدارة الصفية وتنظيم التفاعل", "href": "indicators/المؤشرات_للاداء_الوظيفي/9- إدارة الصف/classroom_management_moe_logo.pdf"}, {"title": "الإدارة الصفية ومشاركة الطلاب", "href": "indicators/المؤشرات_للاداء_الوظيفي/9- إدارة الصف/classroom_management_report.pdf"}]}, {"display": "التقويم وتحليل النتائج", "reports": [{"title": "التقويم الإلكتروني عبر Kahoot", "href": "indicators/المؤشرات_للاداء_الوظيفي/10- التقويم وتحليل النتائج/01_kahoot_assessment_report.pdf"}, {"title": "تحليل النتائج وبناء الإجراءات", "href": "indicators/المؤشرات_للاداء_الوظيفي/10- التقويم وتحليل النتائج/03_results_analysis_actions_report.pdf"}, {"title": "تحليل نتائج الطلاب وتوظيف بيانات التقويم", "href": "indicators/المؤشرات_للاداء_الوظيفي/10- التقويم وتحليل النتائج/excel_results_analysis_report.pdf"}]}];
+const icons = {"أداء الواجبات الوظيفية": "📋", "التفاعل مع المجتمع المدرسي": "🤝", "التفاعل مع أولياء الأمور": "👨‍👩‍👦", "استراتيجيات التدريس": "🎯", "تحسين نتائج المتعلمين": "📈", "التخطيط والتنفيذ": "🗓️", "توظيف التقنية": "💻", "البيئة التعليمية": "🏫", "إدارة الصف": "🧭", "التقويم وتحليل النتائج": "📊"};
+const descriptions = {"أداء الواجبات الوظيفية": "توثيق المتابعة والسجلات والمهام التعليمية.", "التفاعل مع المجتمع المدرسي": "شواهد المبادرات والقنوات والأنشطة المدرسية.", "التفاعل مع أولياء الأمور": "تواصل داعم ومتابعة مستمرة مع الأسرة.", "استراتيجيات التدريس": "تنويع طرائق التعلم والأنشطة وأوراق العمل.", "تحسين نتائج المتعلمين": "خطط علاجية ونواتج تعلم وتقارير تحسين الأداء.", "التخطيط والتنفيذ": "تنظيم الخطط الأسبوعية والملفات والمشاريع الطلابية.", "توظيف التقنية": "استخدام أدوات ومنصات رقمية داعمة للتعلم.", "البيئة التعليمية": "تهيئة بيئة صفية ورقمية محفزة وآمنة.", "إدارة الصف": "تنظيم التفاعل والمشاركة والانضباط الصفي.", "التقويم وتحليل النتائج": "تقويم إلكتروني وتحليل نتائج وبناء إجراءات."};
+const grid = document.getElementById("grid");
+
+function createIndicatorCard(sec, index) {
+  const card = document.createElement("article");
+  card.className = "card";
+  card.dataset.search = (sec.display + " " + sec.reports.map(r => r.title).join(" ")).toLowerCase();
+
+  const top = document.createElement("div");
+  top.className = "card-top";
+
+  const titleWrap = document.createElement("div");
+  const h = document.createElement("h3");
+  h.textContent = sec.display;
+  const p = document.createElement("p");
+  p.textContent = descriptions[sec.display] || "تقارير وشواهد مرتبطة بهذا المؤشر.";
+  titleWrap.appendChild(h);
+  titleWrap.appendChild(p);
+
+  const icon = document.createElement("div");
+  icon.className = "icon";
+  icon.textContent = icons[sec.display] || "📁";
+
+  top.appendChild(titleWrap);
+  top.appendChild(icon);
+
+  const badge = document.createElement("span");
+  badge.className = "badge";
+  badge.textContent = sec.reports.length + " تقارير";
+
+  const actions = document.createElement("div");
+  actions.className = "card-actions";
+
+  const btn = document.createElement("button");
+  btn.textContent = "عرض التقارير";
+  const list = document.createElement("div");
+  list.className = "reportlist";
+
+  btn.onclick = () => {
+    list.classList.toggle("open");
+    btn.textContent = list.classList.contains("open") ? "إخفاء التقارير" : "عرض التقارير";
+  };
+
+  sec.reports.forEach((rep, i) => {
+    const a = document.createElement("a");
+    a.href = rep.href;
+    a.target = "_blank";
+    a.innerHTML = `<span>${i+1}. ${rep.title}</span><span>فتح ↗</span>`;
+    list.appendChild(a);
+  });
+
+  actions.appendChild(btn);
+  card.appendChild(top);
+  card.appendChild(badge);
+  card.appendChild(actions);
+  card.appendChild(list);
+  return card;
+}
+
+sections.forEach((sec, idx) => grid.appendChild(createIndicatorCard(sec, idx)));
+
+const about = document.createElement("article");
+about.className = "card";
+about.dataset.search = "البيانات المهنية معلم متقدم ماجستير تقنيات تعليم 19 سنة 20 حصة";
+about.innerHTML = `
+  <div class="card-top">
+    <div>
+      <h3>البيانات المهنية</h3>
+      <p>البيانات المهنية الأساسية للمعلم.</p>
+    </div>
+    <div class="icon">👤</div>
+  </div>
+  <span class="badge">صفحة تعريفية</span>
+  <div class="card-actions"><a class="linkbtn alt" href="about.html" target="_blank">فتح الصفحة</a></div>`;
+grid.insertBefore(about, grid.firstChild);
+
+const growth = document.createElement("article");
+growth.className = "card";
+growth.dataset.search = "النمو المهني شهادات دورات";
+growth.innerHTML = `
+  <div class="card-top">
+    <div>
+      <h3>النمو المهني</h3>
+      <p>معرض مستقل للشهادات بعنوان منظم وبعرض أفقي.</p>
+    </div>
+    <div class="icon">🏅</div>
+  </div>
+  <span class="badge">32 شهادة</span>
+  <div class="card-actions"><a class="linkbtn alt" href="growth_gallery/index.html" target="_blank">فتح معرض الشهادات</a></div>`;
+grid.appendChild(growth);
+
+document.getElementById("search").addEventListener("input", e => {
+  const q = e.target.value.trim().toLowerCase();
+  document.querySelectorAll(".card").forEach(card => {
+    card.classList.toggle("hidden", q && !card.dataset.search.includes(q));
+  });
+});
+
+function collapseAll() {
+  document.querySelectorAll(".reportlist").forEach(list => list.classList.remove("open"));
+  document.querySelectorAll(".card-actions button").forEach(btn => btn.textContent = "عرض التقارير");
+}
+</script>
+</body>
+</html>
